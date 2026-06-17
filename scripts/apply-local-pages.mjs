@@ -2,6 +2,11 @@
 /**
  * Copy local pages from src/content/pages/ into src/content/docs/.
  * Run before dev/build so Starlight can resolve sidebar slugs.
+ *
+ * Layout:
+ *   pages/index.mdx           → docs/index.mdx
+ *   pages/{locale}/index.mdx  → docs/{locale}/index.mdx
+ *   pages/about/{locale}.md   → docs/{locale}/about.md
  */
 import { cpSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -35,17 +40,14 @@ if (existsSync(indexSrc)) {
 	cpSync(indexSrc, join(TARGET, 'index.mdx'));
 }
 
-const homeDir = join(LOCAL_PAGES, 'home');
-const homeFallback = join(homeDir, 'en.mdx');
-if (existsSync(homeDir)) {
-	for (const locale of LOCALES) {
-		const src = join(homeDir, `${locale}.mdx`);
-		const source = existsSync(src) ? src : homeFallback;
-		if (!existsSync(source)) continue;
-		const dest = join(TARGET, locale, 'index.mdx');
-		mkdirSync(dirname(dest), { recursive: true });
-		cpSync(source, dest);
-	}
+const localeFallback = join(LOCAL_PAGES, 'en', 'index.mdx');
+for (const locale of LOCALES) {
+	const src = join(LOCAL_PAGES, locale, 'index.mdx');
+	const source = existsSync(src) ? src : localeFallback;
+	if (!existsSync(source)) continue;
+	const dest = join(TARGET, locale, 'index.mdx');
+	mkdirSync(dirname(dest), { recursive: true });
+	cpSync(source, dest);
 }
 
 const aboutDir = join(LOCAL_PAGES, 'about');

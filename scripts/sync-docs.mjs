@@ -38,19 +38,16 @@ function applyLocalPages() {
 		console.log('Restored local index.mdx');
 	}
 
-	const homeDir = join(LOCAL_PAGES, 'home');
-	const homeFallback = join(homeDir, 'en.mdx');
-	if (existsSync(homeDir)) {
-		for (const locale of LOCALES) {
-			const src = join(homeDir, `${locale}.mdx`);
-			const source = existsSync(src) ? src : homeFallback;
-			if (!existsSync(source)) continue;
-			const dest = join(TARGET, locale, 'index.mdx');
-			mkdirSync(dirname(dest), { recursive: true });
-			cpSync(source, dest);
-		}
-		console.log('Restored local home pages');
+	const localeFallback = join(LOCAL_PAGES, 'en', 'index.mdx');
+	for (const locale of LOCALES) {
+		const src = join(LOCAL_PAGES, locale, 'index.mdx');
+		const source = existsSync(src) ? src : localeFallback;
+		if (!existsSync(source)) continue;
+		const dest = join(TARGET, locale, 'index.mdx');
+		mkdirSync(dirname(dest), { recursive: true });
+		cpSync(source, dest);
 	}
+	console.log('Restored local locale index pages');
 
 	const aboutDir = join(LOCAL_PAGES, 'about');
 	if (!existsSync(aboutDir)) return;

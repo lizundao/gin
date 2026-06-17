@@ -105,6 +105,27 @@ html[data-theme='dark']::before {
 	letter-spacing: 0.04em;
 }
 
+/* Splash homepage */
+[data-has-hero] .hero img {
+	filter: drop-shadow(0 12px 28px hsl(215 69% 52% / 0.18));
+}
+
+html[data-theme='dark'] [data-has-hero] .hero img {
+	filter: drop-shadow(0 16px 36px hsl(215 90% 62% / 0.12));
+}
+
+[data-has-hero] .sl-markdown-content h2 {
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-top: 2.5rem;
+}
+
+[data-locale='zh-cn'] [data-has-hero] .sl-markdown-content h2,
+[data-locale='zh-tw'] [data-has-hero] .sl-markdown-content h2 {
+	font-family: "ZCOOL XiaoWei", serif;
+	font-weight: 400;
+}
+
 /* Splash hero */
 .hero {
 	padding-top: 3.5rem;

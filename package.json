@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "pages:apply": "node scripts/apply-local-pages.mjs",
+    "pages:patch": "node scripts/patch-locale-indexes.mjs",
     "predev": "node scripts/apply-local-pages.mjs",
     "prebuild": "node scripts/apply-local-pages.mjs",
     "dev": "astro dev",
