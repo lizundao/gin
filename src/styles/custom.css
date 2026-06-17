@@ -45,9 +45,12 @@ html::before {
 }
 
 :root[data-theme='dark'] html::before {
-	background-image:
-		linear-gradient(hsl(220 10% 22% / 0.5) 1px, transparent 1px),
-		linear-gradient(90deg, hsl(220 10% 22% / 0.5) 1px, transparent 1px);
+	background-image: radial-gradient(
+		ellipse 100% 60% at 50% -10%,
+		hsl(215 35% 16% / 0.35),
+		transparent 55%
+	);
+	background-size: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
