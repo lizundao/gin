@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--font-brush: "Ma Shan Zheng", cursive;
+	--font-script: "Long Cang", cursive;
+	--font-poem: "ZCOOL XiaoWei", serif;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "gin",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "pages:apply": "node scripts/apply-local-pages.mjs",
+    "predev": "node scripts/apply-local-pages.mjs",
+    "prebuild": "node scripts/apply-local-pages.mjs",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync-docs": "node scripts/sync-docs.mjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=gin-wiki"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/starlight": "^0.40.0",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.5",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/long-cang": "^5.2.8",
+    "@fontsource/ma-shan-zheng": "^5.2.9",
+    "@fontsource/zcool-xiaowei": "^5.2.8",
+    "wrangler": "^4.101.0"
+  }
+}

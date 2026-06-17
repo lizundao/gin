@@ -1,0 +1,38 @@
+---
+title: Gin.wiki
+description: Go 语言 Web 框架 Gin 的中文文档站，多语言静态站点。
+template: splash
+hero:
+  tagline: 最快的 Go 语言全功能 Web 框架，文档在此备查。
+  image:
+    file: ../../assets/gin.png
+  actions:
+    - text: 阅读文档
+      link: /zh-cn/docs/
+      icon: right-arrow
+    - text: 源码
+      link: https://github.com/gin-gonic/gin
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## 关于本站
+
+Gin.wiki 是 [Gin](https://github.com/gin-gonic/gin) 框架文档的独立镜像站，内容同步自官方文档，采用纯静态部署，支持多语言阅读。
+
+<CardGrid>
+	<Card title="快速" icon="rocket">
+		基于基数树的路由，内存占用小，无反射，API 性能可预期。
+	</Card>
+	<Card title="中间件" icon="seti:plan">
+		HTTP 请求经中间件链处理：日志、鉴权、压缩，再到业务逻辑。
+	</Card>
+	<Card title="稳定" icon="seti:lock">
+		自动捕获 panic 并恢复，服务持续可用，可对接 Sentry 上报。
+	</Card>
+	<Card title="多语言" icon="open-book">
+		支持中文、英文等 12 种语言，左侧切换即可阅读对应版本。
+	</Card>
+</CardGrid>

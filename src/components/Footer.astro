@@ -1,0 +1,124 @@
+---
+import EditLink from 'virtual:starlight/components/EditLink';
+import LastUpdated from 'virtual:starlight/components/LastUpdated';
+import Pagination from 'virtual:starlight/components/Pagination';
+
+const { lang, locale } = Astro.locals.starlightRoute;
+const year = new Date().getFullYear();
+const isChinese = lang === 'zh-CN' || lang === 'zh-TW';
+
+const aboutLabels: Record<string, string> = {
+	'zh-CN': '关于',
+	'zh-TW': '關於',
+	ja: 'About',
+	'ko-KR': 'About',
+	en: 'About',
+	es: 'About',
+	pt: 'About',
+	ru: 'About',
+	tr: 'About',
+	id: 'About',
+	fa: 'About',
+	ar: 'About',
+};
+const aboutLabel = aboutLabels[lang] ?? 'About';
+const aboutHref = `/${locale}/about/`;
+---
+
+<footer class="sl-flex">
+	<div class="meta sl-flex">
+		<EditLink />
+		<LastUpdated />
+	</div>
+	<Pagination />
+
+	<div class="site-footer">
+		{
+			isChinese ? (
+				<p class="site-footer-motto">不争门户之光，但愿阁中可读。</p>
+			) : (
+				<p class="site-footer-motto">A quiet corner shelf, here when you need to read.</p>
+			)
+		}
+		<p class="site-footer-meta">
+			{
+				isChinese ? (
+					<>
+						本站非 Gin 官方 · 文档同步自{' '}
+						<a href="https://github.com/gin-gonic/website" target="_blank" rel="noopener noreferrer">
+							gin-gonic
+						</a>
+						· 版权归原项目所有
+					</>
+				) : (
+					<>
+						Unofficial mirror · Docs from{' '}
+						<a href="https://github.com/gin-gonic/website" target="_blank" rel="noopener noreferrer">
+							gin-gonic
+						</a>
+					</>
+				)
+			}
+			<span class="site-footer-copy">
+				{' '}
+				· © {year} gin.wiki ·{' '}
+				<a href={aboutHref}>{aboutLabel}</a>
+			</span>
+		</p>
+	</div>
+</footer>
+
+<style>
+	@layer starlight.core {
+		footer {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		.meta {
+			gap: 0.75rem 3rem;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-top: 3rem;
+			font-size: var(--sl-text-sm);
+			color: var(--sl-color-gray-3);
+		}
+		.meta > :global(p:only-child) {
+			margin-inline-start: auto;
+		}
+
+		.site-footer {
+			margin-top: 0.5rem;
+			padding-top: 1.25rem;
+			border-top: 1px solid var(--sl-color-hairline);
+			text-align: center;
+		}
+
+		.site-footer-motto {
+			font-family: "ZCOOL XiaoWei", serif;
+			font-size: var(--sl-text-sm);
+			color: var(--sl-color-gray-4);
+			line-height: 1.6;
+		}
+
+		.site-footer-meta {
+			margin-top: 0.35rem;
+			font-family: var(--sl-font-mono);
+			font-size: var(--sl-text-xs);
+			color: var(--sl-color-gray-3);
+			line-height: 1.6;
+		}
+
+		.site-footer-meta a {
+			color: var(--sl-color-gray-4);
+			text-decoration: none;
+		}
+
+		.site-footer-meta a:hover {
+			color: var(--sl-color-accent);
+		}
+
+		.site-footer-copy {
+			color: var(--sl-color-gray-3);
+		}
+	}
+</style>

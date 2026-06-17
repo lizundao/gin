@@ -1,0 +1,209 @@
+/*
+ * gin.wiki theme
+ * Gin official blue + cool paper docs aesthetic.
+ * Chinese typography on headings only; sidebar uses left-bar active state.
+ */
+
+:root,
+::backdrop {
+	--gin-blue: hsl(215, 69%, 52%);
+	--gin-blue-deep: hsl(215, 72%, 38%);
+	--gin-blue-soft: hsl(215, 55%, 94%);
+
+	--sl-font: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+	--sl-font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--sl-line-height: 1.75;
+	--sl-line-height-headings: 1.25;
+
+	/* dark mode - Gin blue accent */
+	--sl-hue-blue: 215;
+	--sl-color-accent-low: hsl(215, 54%, 20%);
+	--sl-color-accent: hsl(215, 90%, 62%);
+	--sl-color-accent-high: hsl(215, 85%, 82%);
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+	/* light mode - matches gin-gonic.com */
+	--sl-color-accent-low: hsl(215, 88%, 93%);
+	--sl-color-accent: hsl(215, 69%, 52%);
+	--sl-color-accent-high: hsl(215, 72%, 32%);
+}
+
+/* Cool paper grid - distinct from warm lizundao grid */
+html::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-color: var(--sl-color-bg);
+	background-image:
+		linear-gradient(hsl(220 12% 90% / 0.4) 1px, transparent 1px),
+		linear-gradient(90deg, hsl(220 12% 90% / 0.4) 1px, transparent 1px);
+	background-size: 28px 28px;
+}
+
+:root[data-theme='dark'] html::before {
+	background-image:
+		linear-gradient(hsl(220 10% 22% / 0.5) 1px, transparent 1px),
+		linear-gradient(90deg, hsl(220 10% 22% / 0.5) 1px, transparent 1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+::selection {
+	background: hsl(215 69% 52% / 0.18);
+	color: inherit;
+}
+
+/* Site title */
+.site-title-wrap {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	text-decoration: none;
+	color: var(--sl-color-text);
+	min-width: 0;
+}
+
+.site-title-wrap:hover {
+	color: var(--sl-color-accent);
+}
+
+.site-title-logo {
+	height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+	width: auto;
+	max-width: 2.25rem;
+	flex-shrink: 0;
+	object-fit: contain;
+	object-position: center;
+}
+
+.site-title-text {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.1rem;
+	min-width: 0;
+	overflow: hidden;
+}
+
+.site-title-main {
+	font-family: var(--sl-font);
+	font-size: 1.1rem;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+.site-title-sub {
+	font-family: var(--sl-font-mono);
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: var(--sl-color-gray-4);
+	letter-spacing: 0.04em;
+}
+
+/* Splash hero */
+.hero {
+	padding-top: 3.5rem;
+}
+
+.hero h1 {
+	font-family: var(--sl-font);
+	font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	color: var(--sl-color-text);
+}
+
+[data-locale='zh-cn'] .hero h1,
+[data-locale='zh-tw'] .hero h1 {
+	font-family: "ZCOOL XiaoWei", serif;
+	font-weight: 400;
+	letter-spacing: 0.01em;
+}
+
+.hero .tagline {
+	font-size: 1rem;
+	max-width: 38ch;
+	line-height: 1.7;
+	color: var(--sl-color-gray-4);
+}
+
+[data-locale='zh-cn'] .hero .tagline,
+[data-locale='zh-tw'] .hero .tagline {
+	font-family: "ZCOOL XiaoWei", serif;
+	font-size: 1.05rem;
+}
+
+.hero .actions a {
+	border-radius: 0.375rem;
+	transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.hero .actions a:active {
+		transform: scale(0.98);
+	}
+}
+
+/* Cards - subtle blue tint, not rose gradient */
+.sl-markdown-content .card {
+	border-radius: 0.375rem;
+	border-color: var(--sl-color-hairline);
+}
+
+.sl-markdown-content .card:nth-child(4n + 1) {
+	background: linear-gradient(160deg, var(--gin-blue-soft), var(--sl-color-bg));
+}
+
+:root[data-theme='dark'] .sl-markdown-content .card:nth-child(4n + 1) {
+	background: linear-gradient(160deg, hsl(215 40% 14%), var(--sl-color-bg));
+}
+
+/*
+ * Sidebar active - left bar + light fill.
+ * Fixes contrast: do NOT use Starlight's filled bg + wrong text color.
+ */
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	color: var(--sl-color-accent-high);
+	background-color: var(--sl-color-accent-low);
+	border-inline-start: 3px solid var(--sl-color-accent);
+	padding-inline-start: calc(0.3em + var(--sl-sidebar-item-padding-inline, 0.5rem) - 3px);
+	font-weight: 600;
+}
+
+/* Header */
+header.header {
+	border-bottom: 1px solid var(--sl-color-hairline);
+	background-color: color-mix(in srgb, var(--sl-color-bg-nav) 90%, transparent);
+	backdrop-filter: blur(10px);
+	max-height: 4rem;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	header.header {
+		background-color: var(--sl-color-bg-nav);
+		backdrop-filter: none;
+	}
+}
+
+/* Prose headings */
+.sl-markdown-content h2 {
+	font-weight: 600;
+	border-bottom: 1px solid var(--sl-color-hairline);
+	padding-bottom: 0.35rem;
+}
+
+[data-locale='zh-cn'] .sl-markdown-content h2,
+[data-locale='zh-tw'] .sl-markdown-content h2 {
+	font-family: "ZCOOL XiaoWei", serif;
+	font-weight: 400;
+}

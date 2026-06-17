@@ -1,0 +1,50 @@
+---
+title: إطار عمل Gin للويب
+description: أسرع إطار عمل ويب متكامل الميزات للغة Go. واضح وصريح.
+template: splash
+hero:
+  tagline: أسرع إطار عمل ويب متكامل الميزات للغة Go. واضح وصريح.
+  image:
+    file: ../../../assets/gin.png
+  actions:
+    - text: اقرأ التوثيق
+      link: /ar/docs/
+      icon: right-arrow
+    - text: تحميل
+      link: https://github.com/gin-gonic/gin/releases
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## ما هو Gin؟
+
+Gin هو إطار عمل ويب مكتوب بلغة Go. يتميز بواجهة برمجية مشابهة لـ Martini، لكن بأداء أسرع بما يصل إلى 40 مرة من Martini. إذا كنت تبحث عن الأداء والإنتاجية، فسوف تحب Gin.
+
+<CardGrid>
+	<Card title="سريع" icon="rocket">
+		توجيه مبني على شجرة Radix، واستهلاك ذاكرة منخفض. لا يستخدم الانعكاس (Reflection). أداء واجهة برمجية يمكن التنبؤ به.
+	</Card>
+	<Card title="دعم الوسيطات" icon="seti:plan">
+		يمكن معالجة طلب HTTP الوارد عبر سلسلة من الوسيطات (Middleware) والإجراء النهائي. على سبيل المثال: المسجّل، التفويض، GZIP، وأخيراً نشر رسالة في قاعدة البيانات.
+	</Card>
+	<Card title="خالٍ من الأعطال" icon="seti:lock">
+		يستطيع Gin التقاط حالات الذعر (panic) التي تحدث أثناء طلب HTTP واستعادتها. بهذه الطريقة، سيكون خادمك متاحاً دائماً. كما يمكن الإبلاغ عن حالة الذعر هذه إلى Sentry مثلاً!
+	</Card>
+	<Card title="التحقق من JSON" icon="approve-check-circle">
+		يستطيع Gin تحليل والتحقق من صحة JSON في الطلب، مثل التحقق من وجود القيم المطلوبة.
+	</Card>
+	<Card title="تجميع المسارات" icon="puzzle">
+		نظّم مساراتك بشكل أفضل. المسارات التي تتطلب تفويضاً مقابل التي لا تتطلب، إصدارات API مختلفة. بالإضافة إلى ذلك، يمكن تداخل المجموعات بلا حدود دون التأثير على الأداء.
+	</Card>
+	<Card title="إدارة الأخطاء" icon="open-book">
+		يوفر Gin طريقة مريحة لجمع جميع الأخطاء التي تحدث أثناء طلب HTTP. وفي النهاية، يمكن للوسيط كتابتها في ملف سجل، أو في قاعدة بيانات، أو إرسالها عبر الشبكة.
+	</Card>
+	<Card title="عرض مدمج" icon="seti:json">
+		يوفر Gin واجهة برمجية سهلة الاستخدام لعرض JSON وXML وHTML.
+	</Card>
+	<Card title="قابل للتوسع" icon="seti:html">
+		إنشاء وسيط جديد سهل للغاية، فقط اطلع على الكود النموذجي.
+	</Card>
+</CardGrid>
